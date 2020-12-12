@@ -1,4 +1,4 @@
-特殊操作操作
+- 特殊操作操作
 	验证控件颜色
 		https://www.selenium.dev/documentation/en/support_packages/working_with_colours/
 		import org.openqa.selenium.support.Color;
@@ -57,12 +57,13 @@
 		strictFileInteractability
 			对于输入文件进行严格的交互检查
 控件定位
-元素定位
+- 元素定位代码写法
 	在页面中寻找class
 		chrome-F12-console-document.getElementsByClassName('ant-form-item-control')
 ![avatar](./pic/selenium1.png)		
 	页面中按照text查找
 		xpath = "//button/span[text()=\"新增今日早报\"]"
+		标签的最后一个 last()
 chromeOption
 	做一些启动浏览器的默认配置
 	https://sites.google.com/a/chromium.org/chromedriver/capabilities
@@ -92,4 +93,15 @@ chromedriver
 		https://sites.google.com/a/chromium.org/chromedriver/getting-started
 geckodriver
 	下载版本选择
-		https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html			
+		https://firefox-source-docs.mozilla.org/testing/geckodriver/Support.html		
+- 切换窗口
+ 当有多个窗口时，切换窗口：
+ 句柄driver.getWindowHandler();
+ driver.switchTo.window(name);
+ 
+- 查询xpath在chrome中的验证
+ chrome->console->$x("xpathargs")
+ 
+		
+		
+	
