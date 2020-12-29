@@ -141,3 +141,5 @@ SourceFile: "Greeting.java"
 ### 3.jacoco的插桩原理
 - 参考：<https://www.jacoco.org/jacoco/trunk/doc/implementation.html>
 ![Image text](./pic/jacoco.png)
+- offline和on-the-fly的选择差异参考：
+<https://testerhome.com/articles/16981>
