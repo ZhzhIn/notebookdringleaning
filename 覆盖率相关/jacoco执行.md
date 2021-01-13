@@ -1,6 +1,6 @@
 ### 1.资料来源
 - 官网下载：<https://www.jacoco.org/jacoco/trunk/doc/agent.html>
-### 2.javaagent步骤
+### 2.javaagent步骤（适用spring)
 - 打包 忽略
 - 启动服务并执行测试 
 ```

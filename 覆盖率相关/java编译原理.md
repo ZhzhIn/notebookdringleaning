@@ -139,7 +139,14 @@ SourceFile: "Greeting.java"
 ![Image text](./pic/字节码.png)
 ![Image text](./pic/虚拟机.png)
 ### 3.jacoco的插桩原理
-- 参考：<https://www.jacoco.org/jacoco/trunk/doc/implementation.html>
+- 官网地址
+  <https://www.jacoco.org/jacoco/trunk/doc/implementation.html>
 ![Image text](./pic/jacoco.png)
 - offline和on-the-fly的选择差异参考：
-<https://testerhome.com/articles/16981>
+  <https://testerhome.com/articles/16981>
+- jacoco根据**asm**二次扩展开发：
+  <https://asm.ow2.io/>
+### 4.待了解工具
+- asm
+- jvm-sandbox
+- jvm-sandbox-repeater
