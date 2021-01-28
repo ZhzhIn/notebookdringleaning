@@ -1,0 +1,1 @@
+@ParameterTest 不支持Thread.current.getResource（）

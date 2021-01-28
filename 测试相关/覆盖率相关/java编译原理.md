@@ -136,12 +136,12 @@ SourceFile: "Greeting.java"
 ```
 ### 2.java字节码的含义解析
 - 参考：<https://segmentfault.com/a/1190000008606277>
-![Image text](./pic/字节码.png)
-![Image text](./pic/虚拟机.png)
+![Image text](IdeaProjects/notebookdringleaning/测试相关/覆盖率相关/pic/字节码.png)
+![Image text](IdeaProjects/notebookdringleaning/测试相关/覆盖率相关/pic/虚拟机.png)
 ### 3.jacoco的插桩原理
 - 官网地址
   <https://www.jacoco.org/jacoco/trunk/doc/implementation.html>
-![Image text](./pic/jacoco.png)
+![Image text](IdeaProjects/notebookdringleaning/测试相关/覆盖率相关/pic/jacoco.png)
 - offline和on-the-fly的选择差异参考：
   <https://testerhome.com/articles/16981>
 - jacoco根据**asm**二次扩展开发：
