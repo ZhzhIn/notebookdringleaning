@@ -60,7 +60,7 @@
 - 元素定位代码写法
 	在页面中寻找class
 		chrome-F12-console-document.getElementsByClassName('ant-form-item-control')
-![avatar](IdeaProjects/notebookdringleaning/测试相关/客户端测试/pic/selenium1.png)		
+![avatar](./pic/selenium1.png)		
 	页面中按照text查找
 		xpath = "//button/span[text()=\"新增今日早报\"]"
 		标签的最后一个 last()

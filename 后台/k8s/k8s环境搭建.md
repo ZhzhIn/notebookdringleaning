@@ -3,7 +3,7 @@
 mkdir -p /etc/docker tee /etc/docker/daemon.json <<-'EOF' { "registry-mirrors": ["https://fl791z1h.mirror.aliyuncs.com"] }EOF
 systemctl daemon-reload systemctl restart docker
 ```
-#添加阿⾥ kubernetes源
+### 添加阿里 kubernetes源
 ```
 cat <<EOF > /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
@@ -14,15 +14,17 @@ gpgcheck=1
 repo_gpgcheck=1
 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun. EOF
 ```
- #安装k8s相关组件
+### 安装k8s相关组件
  ```
  yum install kubectl kubelet kubeadm systemctl enable kubelet
  ```
 
 
-# 配置⽹络模式 cat > /etc/sysctl.d/k8s.conf << EOF net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
-
-##执⾏k8s初始化
+### 配置⽹络模式 
+```
+cat > /etc/sysctl.d/k8s.conf << EOF net.bridge.bridge-nf-call-ip6tables = 1 net.bridge.bridge-nf-call-iptables = 1 EOF echo 1 > /proc/sys/net/bridge/bridge-nf-call-iptables echo 1 > /proc/sys/net/bridge/bridge-nf-call-ip6tables
+```
+##执行k8s初始化
 ```
 kubeadm init \
  --apiserver-advertise-address=192.168.0.76 \
@@ -30,7 +32,7 @@ kubeadm init \
    --service-cidr=10.10.0.0/16
    --pod-network-cidr=10.122.0.0/16
 ```
-## 访问192.168.0.76:6443网址
+### 访问192.168.0.76:6443网址
 此时报错
 ```
 {
@@ -67,11 +69,11 @@ Then you can join any number of worker nodes by running the following on each as
 kubeadm join 192.168.0.76:6443 --token k518l7.qi85apfe9wmykmb6 \
     --discovery-token-ca-cert-hash sha256:d66259388d9bfe8339dad34b1fca95f5c889da5204a4b9ef695b49a376dde7cc
 ```
-## join前先生成token和密钥
+### join前先生成token和密钥
 ```
 kubeadm token create --print-join-command
 ```
-## 卸载k8s
+### 卸载k8s
 ```
 kubeadm reset -f
 modprobe -r ipip

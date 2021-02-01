@@ -1,1 +1,2 @@
-![avatar](IdeaProjects/notebookdringleaning/测试相关/客户端测试/pic/APP质量保障体系.png)
+
+![APP质量保障体系](./pic/appQASystem.png)

@@ -6,8 +6,8 @@
      awk -F \" 'BEGIN{RS="|"}/id\/e3x/{printf $4": "}/id\/b_e/{print $4}'
  done`
 
-![Image text](IdeaProjects/notebookdringleaning/后台/linux/pic/adb1.png)
+![Image text](./pic/adb1.png)
 
-![Image text](IdeaProjects/notebookdringleaning/后台/linux/pic/adb2.png)
+![Image text](./pic/adb2.png)
 
-![Image text](IdeaProjects/notebookdringleaning/后台/linux/pic/adb3.png)
+![Image text](./pic/adb3.png)
