@@ -1,4 +1,4 @@
-### 1.查看java生成的字节码文件，通过命令 javap -v -p ClassName
+#### 1.查看java生成的字节码文件，通过命令 javap -v -p ClassName
 - 举例：.java代码如下
 ```
 package com.example.restservice;
@@ -134,19 +134,21 @@ Constant pool:
 }
 SourceFile: "Greeting.java"
 ```
-### 2.java字节码的含义解析
+#### 2.java字节码的含义解析
 - 参考：<https://segmentfault.com/a/1190000008606277>
 ![Image text](./pic/字节码.png)
 ![Image text](./pic/虚拟机.png)
-### 3.jacoco的插桩原理
+#### 3.jacoco的插桩原理
 - 官网地址
   <https://www.jacoco.org/jacoco/trunk/doc/implementation.html>
 ![Image text](./pic/jacoco.png)
 - offline和on-the-fly的选择差异参考：
   <https://testerhome.com/articles/16981>
+  1. on-the-fly 是动态的实时的反馈，通过javaagent实现，需要启动一个服务；
+  2. offline方式，在执行完成之后才能看到反馈，通过生成一个插桩后的jar包实现；
 - jacoco根据**asm**二次扩展开发：
   <https://asm.ow2.io/>
-### 4.待了解工具
+#### 4.待了解工具
 - asm
 - jvm-sandbox
 - jvm-sandbox-repeater
