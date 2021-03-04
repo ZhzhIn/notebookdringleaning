@@ -152,3 +152,8 @@ SourceFile: "Greeting.java"
 - asm
 - jvm-sandbox
 - jvm-sandbox-repeater
+#### 5.jacoco的具体应用
+1. mvn/ant offline和on-the-fly 都可以；
+2. javaagent ，on-the-fly形式的
+3. 用command打包后，执行新的jar包，offline形式的；
+

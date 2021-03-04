@@ -21,10 +21,10 @@ java -jar jacococli.jar report ./jacoco.exec --classfiles C:/Users/yindo/IdeaPro
 ```
 # 该方式会生成一个本地的.exec文件,启动service时会初始化一个exec
 # shutdown service时会更新exec内容,能实时更新吗？
-java -javaagent:jacocoagent.jar=includes=*,output=file,destfile=jacoco.exec -jar rest-service-0.0.1-SNAPSHOT.jar
+java -javaagent:./jacoco/jacocoagent.jar=includes=*,output=file,destfile=jacoco.exec -jar ./target/rest-service-0.0.1-SNAPSHOT.jar
 #生成html（同tcp模式）
-java -jar jacococli.jar report ./jacoco.exec --classfiles C:/Users/yindo/IdeaProjects/gs-rest-service/complete/target/classes --sourcefiles  C:/Users/yindo/IdeaProjects/gs-rest-service/complete/src/main/java --encoding utf-8 --html ./jacocoReport
-```
+java -jar ./jacoco/jacococli.jar report jacoco.exec --classfiles ./target/classes --sourcefiles  ./src/main/java --encoding utf-8 --html ./jacocoReport
+ ```
 ---
 #### 合并两个exec
 ```

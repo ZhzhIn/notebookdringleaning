@@ -62,7 +62,9 @@
 		chrome-F12-console-document.getElementsByClassName('ant-form-item-control')
 ![avatar](./pic/selenium1.png)		
 	页面中按照text查找
-		xpath = "//button/span[text()=\"新增今日早报\"]"
+	    chrome-F12-console-$x("//path[@class='classname']")
+		xpath = "//button
+		"]"
 		标签的最后一个 last()
 chromeOption
 	做一些启动浏览器的默认配置

@@ -11,3 +11,7 @@ docker cp container_id:docker容器内的路径 本地保存文件的路径
 ```shell script
 docker cp 本地文件的路径 container_id:docker容器内的路径
 ```
+端口映射
+docker -p 宿主机端口号:容器端口号
+文件挂载
+docker -v 宿主机地址：容器地址
