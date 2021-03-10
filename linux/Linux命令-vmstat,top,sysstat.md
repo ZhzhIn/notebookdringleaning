@@ -43,3 +43,22 @@
  | system  |%User Time |系统上所有处理器执行肺内和操作的平均时间百分比 |
  | system  |CPU context swwitches |处理器上下文切换次数 |
  
+2.数据解析
+CPU：
+1.进程处理时间=%User Time +%privileged Time ,实际上就是指程序分别处于操作系统的User模式和Kernel模式的时间。操作系统的IO和系统服务一般运行在kernel模式，程序一般在User模式下运行，但对系统的调用处于kernel模式下
+大部分情况下%privileged time <<%User Time ，因此，%User Time 在很大程度上代表了%Processor Time.
+2.Context Switches/sec （系统对象的每秒上下文切换）不要大于10k~20k。
+长时间CPU服务一个程序，其他程序会等待导致服务质量下降，CPU采用时间片来分别给服务不同的程序。
+3.系统对向下的处理器队列长度 Processor Queue Length < CPU核数+1.
+操作系统会维护一个等待CPU处理的线程队列，如果在这个队列中，数目超过前面所说的值，会出现阻塞，CPU性能下降。一般%Processer Time 很高时都有可能伴随阻塞。
+
+3.磁盘相关的数据指标
+    1.LogicalDisk -%Free Space ，表示当前没有使用的磁盘占比，<15则说明磁盘空间不足
+    2.PhisicalDisk-%Idle Time ，表示当前观察时间间隔内，磁盘空间的时间。<20则说明磁盘工作状态比较重，需要考虑替换读写速度更快的磁盘
+    3.PhisicalDisk-avg disk sec/Read 平均读取时间，代表每次从磁盘读取数据所花费的时间，如果>25ms，则说明磁盘读取有所延迟，对于一些关键应用，<10ms
+    4.PhisicalDisk-avg disk sec/Write 平均写入时间，代表每次写入花费时间。同上<25ms
+    5.PhysicalDisk -avg.Disk Byte/transfer,代表读写操作从磁盘上传输字节的平均数。因为读的频率>>写，所以也可以用avg.Disk byte/Read代替
+    如果AvgDisk byte/transfer数值较小，但%Idle Time 数值却很低，Average Disk Queue Length 的值又很高，则很大程序上说明磁盘性能存在瓶颈：磁盘空闲时间很少，忙于处理读写，但等待队列有多。
+    如果average disk queue length 很高，avg.disk byte/transfer也比较高，则不能说明磁盘的问题，很可能是内存不足造成的数据排队等待进入磁盘现象。
+    IO与mem,cpuyingxiang henda .如果mem的cache byte（缓存字节）很大，>200mb，则表明磁盘存在瓶颈。
+    
