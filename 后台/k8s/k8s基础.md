@@ -5,6 +5,7 @@
 ![avatar](./pic/k8s1.png)
 #### k8s架构
 - k8s由master和node构成，master负责控制node
+![avatar](./pic/k8s2.png)
 - k8s的所有操作通过kubectl指令操作
 #### k8s命令和工具
 - 查看kubectl版本

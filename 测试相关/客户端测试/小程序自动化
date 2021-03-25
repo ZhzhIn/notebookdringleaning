@@ -1,0 +1,47 @@
+### 小程序的原理
+> <https://developers.weixin.qq.com/miniprogram/dev/framework/quickstart/#%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E5%8F%B2>
+#### 技术组成
+基于webview,使用js开发
+![](.小程序自动化_images/minipro1.png)
+#### 微信小程序自动化测试的关键步骤
+- 1.设置chromeDriver的正确版本
+- 2.设置chrome-Option传递给chromeDriver ：执行app和webviewer是不同的进程
+- 3.使用adb-proxy解决fix chromedriver的bug
+#### 为什么有些手机无法自动化微信小程序
+- 1.低版本的chromeDriver在高版本的手机上有bug
+- 2.chromeDriver与微信定制的chrome内核是线上有问题
+解决方案： fix
+    - 1.chromedriver没有使用adb命令，而是使用的adb协议
+    - 2.adb proxy源码
+    
+### adb proxy
+adb直接使用5037端口，如果我们要修改协议缺陷，只能获取5037端口的数据，处理之后转发给5038，让appium使用5038端口的数据
+创建tcp反向代理，开启5038端口，把5037的信息转发。
+```
+mitmdump \
+-p 5038 \
+--rawtcp \
+--mode reverse:http://localhost:5037  \
+-s adb_proxy.py
+```
+adb_proxy.py
+```
+from mitmproxy.utils import strutils
+from mitmproxy import ctx
+from mitmproxy import tcp
+
+def tcp_message(flow: tcp.TCPFlow):
+    message = flow.messages[-1]
+    old_content = message.content
+    #message.content = old_content.replace(b"foo", b"bar")
+    message.content = old_content.replace(b"@webview_devtools_remote_", b"@.*.*.*._devtools_remote_")
+
+    ctx.log.info(
+        "[tcp_message{}] from {} to {}:\n{}".format(
+            " (modified)" if message.content != old_content else "",
+            "client" if message.from_client else "server",
+            "server" if message.from_client else "client",
+            strutils.bytes_to_escaped_str(message.content))
+    )
+```
+#### 查看微信使用的chromeDriver版本
