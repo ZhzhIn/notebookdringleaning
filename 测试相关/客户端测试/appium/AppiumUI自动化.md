@@ -13,3 +13,6 @@ C:\Users\yindo>appium
 [Appium] Welcome to Appium v1.19.0
 [Appium] Appium REST http interface listener started on 0.0.0.0:4723
 ```
+### capabilities和ChromeOptions配置
+capabilities:<http://appium.io/docs/en/writing-running-appium/caps/#uiautomator2-only>
+chromeOptions:<https://sites.google.com/a/chromium.org/chromedriver/capabilities>

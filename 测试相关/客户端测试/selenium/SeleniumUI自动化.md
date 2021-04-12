@@ -89,6 +89,7 @@ chromedriver
 初始下载后，建议您偶尔进行上述过程，以查看是否有任何错误修复版本。
 		ChromeDriver使用与Chrome相同的版本编号方案。有关更多详细信息，请参见https://www.chromium.org/developers/version-numbers
 		https://sites.google.com/a/chromium.org/chromedriver/downloads/version-selection
+		版本选择：http://chromedriver.chromium.org/downloads
 	更新版本
 		https://sqa.stackexchange.com/questions/41928/how-to-autoupdate-chrome-driver-in-selenium
 	加快启动和关闭chromeDriver
