@@ -2,3 +2,36 @@
 1.手机和电脑同一个无线网络  
 2.手机usb链接电脑后，电脑输入 adb tcpip 5555
 3.断开手机usb,电脑输入 adb connect 手机ip地址
+#### 查看当前运行的app packageName
+adb查看包名/Activity名
+
+adb shell "logcat | grep START"
+adb shell dumpsys activity | find “mFocusedActivity”
+adb shell pm list packages
+adb shell dumpsys window | findstr mCurrentFocus
+adb查看安装apk
+
+adb shell
+ls system/app
+　　
+
+按名称找到包名和位置
+
+1|HWVOG:/ $ pm list packages |grep "chaoxi"
+package:org.chaoxi.android
+HWVOG:/ $ pm path org.chaoxi.android
+package:/data/app/org.chaoxi.android-7E1kSgZtxy-AP6zLzDHyIA==/base.apk
+
+
+adb把手机中已有的apk导出来
+
+adb pull system/app/Bluetooth.apk Buluetooth.apk
+　
+
+连接多台手机时，给其中一台install
+
+C:\Users\1>adb -s 127.0.0.1:7555 install base.apk
+Performing Push Install
+base.apk: 1 file pushed. 2.5 MB/s (20811337 bytes in 7.786s)
+        pkg: /data/local/tmp/base.apk
+Success
