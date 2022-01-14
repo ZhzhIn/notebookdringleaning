@@ -35,3 +35,8 @@ Performing Push Install
 base.apk: 1 file pushed. 2.5 MB/s (20811337 bytes in 7.786s)
         pkg: /data/local/tmp/base.apk
 Success
+
+无线连接
+> adb usb
+> adb tcpip 5555
+> adb connect 手机ip:5555
