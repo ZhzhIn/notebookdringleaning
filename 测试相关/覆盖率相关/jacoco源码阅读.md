@@ -171,4 +171,80 @@ Instrumentation 插桩
    
   
    
-2. 
+2. asm部分调用代码
+```java
+/*******************************************************************************
+ * Copyright (c) 2009, 2022 Mountainminds GmbH & Co. KG and Contributors
+ * This program and the accompanying materials are made available under
+ * the terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0
+ *
+ * SPDX-License-Identifier: EPL-2.0
+ *
+ * Contributors:
+ *    Marc R. Hoffmann - initial API and implementation
+ *
+ *******************************************************************************/
+package org.jacoco.core.runtime;
+
+import static java.lang.String.format;
+
+import java.lang.instrument.ClassFileTransformer;
+import java.lang.instrument.IllegalClassFormatException;
+import java.lang.instrument.Instrumentation;
+import java.lang.reflect.Field;
+import java.security.ProtectionDomain;
+
+import org.jacoco.core.internal.instr.InstrSupport;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
+
+/**
+ * This {@link IRuntime} implementation works with a modified system class. A
+ * new static field is added to a bootstrap class that will be used by
+ * instrumented classes. As the system class itself needs to be instrumented
+ * this runtime requires a Java agent.
+ */
+public class ModifiedSystemClassRuntime extends AbstractRuntime {
+    //略
+	/**
+	 * Adds the static data field to the given class definition.
+	 *
+	 * @param source
+	 *            class definition source
+	 * @param accessFieldName "$jacocoAccess"
+	 *            name of the runtime access field
+	 * @return instrumented version with added members
+	 */
+	public static byte[] instrument(final byte[] source,
+			final String accessFieldName) {
+		final ClassReader reader = InstrSupport.classReaderFor(source);
+		final ClassWriter writer = new ClassWriter(reader, 0);
+		reader.accept(new ClassVisitor(InstrSupport.ASM_API_VERSION, writer) {
+			@Override
+			public void visitEnd() {
+				createDataField(cv, "$jacocoAccess");
+				super.visitEnd();
+			}
+		}, ClassReader.EXPAND_FRAMES);
+		return writer.toByteArray();
+	}
+	/**
+	 *
+	 * @param visitor
+	 * @param dataField "$jacocoAccess"
+	 */
+	private static void createDataField(final ClassVisitor visitor,
+			final String dataField) {
+		visitor.visitField(
+				Opcodes.ACC_PUBLIC | Opcodes.ACC_STATIC | Opcodes.ACC_SYNTHETIC
+						| Opcodes.ACC_TRANSIENT,
+				"$jacocoAccess", ACCESS_FIELD_TYPE, null, null);
+	}
+
+}
+
+```

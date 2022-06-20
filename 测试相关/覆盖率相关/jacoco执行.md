@@ -8,7 +8,9 @@
 #### 方式一：远程tcp模式
 ```
 # 启动服务并执行测试
-# tcpserver适用于远程，需要开启端口
+# tcpserver适用于远程，需要开启端口。
+# 需要注意，server会跟随被测jar包本身运行的停止而停止，所以被测jar包需要是一个长期运行的jar包。
+# 否则output=tcpserver方式时，开放的端口服务会很快停止，可能最终dump的时候会提示 Connection refused .因为该端口上并没有任何服务在启动。
 java -javaagent:jacocoagent.jar=includes=*,output=tcpserver,port=9100,address=127.0.0.1 -jar rest-service-0.0.1-SNAPSHOT.jar
 #导出/更新.exec报告文件  
 java -jar jacococli.jar dump --address 127.0.0.1 --port 9100 --destfile ./jacoco.exec --reset
